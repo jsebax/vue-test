@@ -4,7 +4,7 @@
       class="track__title"
       :class="{ green: type === 'pickup', red: type === 'delivery' }"
     >
-      {{ title }}
+      <BIconGeoAltFill />{{ title }}
     </h2>
     <hr />
     <div class="track__info">
