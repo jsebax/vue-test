@@ -8,6 +8,7 @@
           id="accessorials"
           :options="options"
           name="accessorials"
+          v-model="selected"
         ></b-form-checkbox-group>
       </b-form-group>
     </div>
@@ -17,12 +18,18 @@
 <script>
 export default {
   name: "Accessorials",
+  props: ["selectedOptions"],
   data() {
     return {
+      selected: [],
       options: [
         {
           text: "Hazmat",
           value: "hazmat"
+        },
+        {
+          text: "Non-Hazmat",
+          value: "nonHazmat"
         },
         {
           text: "Bonded",
@@ -58,6 +65,19 @@ export default {
         }
       ]
     };
+  },
+  watch: {
+    selectedOptions() {
+      this.selectedOptions.forEach(selectedOption => {
+        const result = this.options.find(option => {
+          return option.text === selectedOption;
+        });
+
+        if (result) {
+          this.selected.push(result.value);
+        }
+      });
+    }
   }
 };
 </script>
